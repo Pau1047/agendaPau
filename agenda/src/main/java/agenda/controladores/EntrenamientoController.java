@@ -1,6 +1,5 @@
 package agenda.controladores;
 
-import agenda.entidades.ArteMarcial;
 import agenda.entidades.Entrenamiento;
 import agenda.servicios.EntrenamientoService;
 import org.springframework.web.bind.annotation.*;

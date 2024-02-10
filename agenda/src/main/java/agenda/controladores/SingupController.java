@@ -1,6 +1,8 @@
 package agenda.controladores;
 
 
+import agenda.entidades.Usuario;
+import agenda.servicios.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,17 +12,17 @@ import java.util.List;
 @RequestMapping("/")
 public class SingupController {
     @Autowired
-    UserService userService;
+    UsuarioService usuarioService;
 
     @PostMapping("signup")
     public void signup(
-            @RequestBody Usuario user) {
-        userService.saveUser(user);
+            @RequestBody Usuario usuario) {
+                usuarioService.save(usuario);
     }
 
     @GetMapping("signup")
     public List<Usuario> obtenerTodos() {
-        return userService.getUsuarios();
+        return usuarioService.getUsuarios();
     }
 
 }
