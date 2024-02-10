@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface EntrenamientoRepository {
     List<Entrenamiento> obtenerTodos();
-    Entrenamiento getId(Long id);
+
     Entrenamiento save(Entrenamiento entrenamiento);
     void delete(Long id);
 

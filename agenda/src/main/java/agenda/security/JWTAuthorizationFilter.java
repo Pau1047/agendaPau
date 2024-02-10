@@ -15,8 +15,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static agenda.seguridad.Constans.*;
-
+import static agenda.security.Constans.*;
 
 
 @Component

@@ -5,8 +5,6 @@ public class Usuario {
     Rol rol;
 
 
-
-
     public Usuario(String username, String encryptedPass, Rol rol) {
         this.username = username;
         this.encryptedPass = encryptedPass;

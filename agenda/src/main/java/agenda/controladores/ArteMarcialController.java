@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/artesmarciales")
+@RequestMapping("/arte_marcial")
 public class ArteMarcialController {
     private final ArteMarcialService arteMarcialService;
 
@@ -20,11 +20,6 @@ public class ArteMarcialController {
     @GetMapping
     public List<ArteMarcial> obtenerTodos(){
         return arteMarcialService.obtenerTodos();
-    }
-
-    @GetMapping("/{id}")
-    public ArteMarcial getId(@PathVariable Long id){
-        return arteMarcialService.getId(id);
     }
 
     @PostMapping

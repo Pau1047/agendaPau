@@ -1,53 +1,51 @@
 package agenda.repositorios;
 
 import agenda.entidades.ArteMarcial;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 @Repository
 public class ArteMarcialRepositoryImpl implements ArteMarcialRepository{
+        private final JdbcTemplate jdbcTemplate;
 
-    private Long idSecuencia = 1L;
-
-
-    public ArteMarcialRepositoryImpl(){
-        ArteMarcial arteInicial = new ArteMarcial("Kickboxing", "japon", "dificil");
-        arteInicial.setId(idSecuencia++);
-        artesMarciales.put(arteInicial.getId(), arteInicial);
-        System.out.println(artesMarciales.get(1L));
-    }
+        public ArteMarcialRepositoryImpl(JdbcTemplate jdbcTemplate){
+            this.jdbcTemplate=jdbcTemplate;
+        }
 
     @Override
     public List<ArteMarcial> obtenerTodos() {
-        return new ArrayList<>(artesMarciales.values());
-    }
-
-    @Override
-    public ArteMarcial getId(Long id) {
-        return artesMarciales.get(id);
+        String sql = "SELECT nombre, paisOriginario, dificultad FROM arte_marcial";
+        return jdbcTemplate.query(sql,(rs, rowNum) ->
+                new ArteMarcial(
+                        rs.getString("nombre"),
+                        rs.getString("paisOriginario"),
+                        rs.getString("dificultad")
+                )
+        );
     }
 
     @Override
     public ArteMarcial save(ArteMarcial arteMarcial) {
-        if (arteMarcial.getId() == null){
-            arteMarcial.setId(idSecuencia++);
-        }
-        artesMarciales.put(arteMarcial.getId(),arteMarcial);
+            String sql = "INSERT INTO arte_marcial (nombre, paisOriginario, dificultad) VALUES (?,?,?)";
+            jdbcTemplate.update(sql, arteMarcial.getNombre(), arteMarcial.getPaisOriginario(), arteMarcial.getDificultad());
+            System.out.println("Arte Marcial creada");
         return arteMarcial;
     }
 
     @Override
     public void delete(Long id) {
-        artesMarciales.remove(id);
+            String sql = "DELETE FROM arte_marcial WHERE id = ?";
+            jdbcTemplate.update(sql, id);
+            System.out.println("Arte marcial eliminada");
     }
 
     @Override
     public ArteMarcial modificarArteMarcial(Long id, ArteMarcial arteMarcial) {
-        artesMarciales.put(id,arteMarcial);
-        return arteMarcial;
+            String sql = "UPDATE arte_marcial SET nombre = ?, paisOriginario = ?, dificultad = ? WHERE id = ?";
+            jdbcTemplate.update(sql, arteMarcial.getNombre(), arteMarcial.getPaisOriginario(), arteMarcial.getDificultad());
+            System.out.println("Cambiando el arte marcial con el id = " + id);
+            return arteMarcial;
     }
 }

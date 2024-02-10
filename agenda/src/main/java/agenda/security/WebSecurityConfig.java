@@ -27,11 +27,13 @@ class WebSecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests( authz -> authz
-                        .requestMatchers(HttpMethod.POST,Constans.LOGIN_URL).permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/arte_marcial/**").hasAuthority("ROLE_" + Rol.ADMIN)
-                        .anyRequest().authenticated())
+                        .requestMatchers("/admin/**").hasAuthority("ROLE_" + Rol.ADMIN)
+                        .requestMatchers("/entrenador/**").hasAuthority("ROLE_" + Rol.ENTRENADOR)
+                        .requestMatchers(HttpMethod.DELETE, "/user/**").hasAuthority("ROLE_" + Rol.USER)
+                        .requestMatchers(HttpMethod.GET, "/user/**").hasAuthority("ROLE_" + Rol.USER)
+                        .requestMatchers(HttpMethod.PUT, "/user/**").hasAuthority("ROLE_" + Rol.USER)
+                        .anyRequest().permitAll())
                 .addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
-
 
         return http.build();
     }

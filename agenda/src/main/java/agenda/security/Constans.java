@@ -13,6 +13,9 @@ public class Constans {
     public static final String SINGUP_URL = "/singup";
     public static final String HEADER_AUTHORIZACION_KEY = "token";
     public static final String TOKEN_BEARER_PREFIX = "Bearer ";
+    public static final String ENTRENADOR_URL = "/entrenador/entrenamiento";
+    public static final String ADMIN_URL = "/admin/arte_marcial";
+    public static final String USER_URL = "/user/entrenamiento";
 
 
     public static final String USER = "pau";

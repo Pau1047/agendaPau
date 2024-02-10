@@ -7,7 +7,7 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 public class GinmasioPrueba {
-    private static final String BASE_URL = "http://localhost:8080/artesmarciales";
+    private static final String BASE_URL = "http://localhost:8080/arte_marcial";
 
     public static void main(String[] args) {
 
@@ -36,10 +36,6 @@ public class GinmasioPrueba {
         // Obtiene un contacto por ID
         ArteMarcial a = new ArteMarcial("Muay Thai", "LightContact","sergwer");
         modificarArteMarcial(2L,a);
-
-
-        // Elimina un contacto por ID
-        eliminarArteMarcial(2L);
 
         // Obtiene todos los contactos después de la eliminación
         listarArteMarcial();

@@ -2,6 +2,7 @@ package agenda.servicios;
 
 import agenda.entidades.Entrenamiento;
 import agenda.repositorios.EntrenamientoRepositoryImpl;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,34 +10,41 @@ import java.util.List;
 @Repository
 
 public class EntrenamientoServiceImpl implements EntrenamientoService {
-    private final EntrenamientoRepositoryImpl entrenamientoRepository;
+    private final JdbcTemplate jdbcTemplate;
 
-    public EntrenamientoServiceImpl(EntrenamientoRepositoryImpl entrenamientoRepository) {
-        this.entrenamientoRepository = entrenamientoRepository;
+    public EntrenamientoServiceImpl(JdbcTemplate jdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
     }
-
     @Override
     public List<Entrenamiento> obtenerTodos() {
-        return entrenamientoRepository.obtenerTodos();
-    }
-
-    @Override
-    public Entrenamiento getId(Long id) {
-        return entrenamientoRepository.getId(id);
+        String sql ="SELECT duracion, tipoArte FROM entrenamiento";
+        return jdbcTemplate.query(sql,(rs, rowNum) ->
+                new Entrenamiento(
+                        rs.getString("duracion"),
+                        rs.getString("tipoArte")
+                )
+        );
     }
 
     @Override
     public Entrenamiento save(Entrenamiento entrenamiento) {
-        return entrenamientoRepository.save(entrenamiento);
+        String sql = "INSERT INTO entrenamiento (duracion, tipoArte) VALUES (?,?,?)";
+        jdbcTemplate.update(sql, entrenamiento.getDuracion(),entrenamiento.getTipoArte());
+        System.out.println("Entrenamiento creado");
+        return entrenamiento;
     }
 
     @Override
     public void delete(Long id) {
-        entrenamientoRepository.delete(id);
+        String sql = "DELETE FROM entrenamiento WHERE id = ?";
+        jdbcTemplate.update(sql,id);
+        System.out.println("Entrenamiento borrado");
     }
 
     @Override
     public Entrenamiento modificarEntrenamiento(Long id, Entrenamiento entrenamiento) {
-        return entrenamientoRepository.modificarEntrenamiento(id,entrenamiento);
+        String sql = "UPDATE entrenamiento SET duracion = ?, tipoArte = ? WHERE id = ?";
+        jdbcTemplate.update(sql, entrenamiento.getDuracion(), entrenamiento.getTipoArte());
+        return entrenamiento;
     }
 }
