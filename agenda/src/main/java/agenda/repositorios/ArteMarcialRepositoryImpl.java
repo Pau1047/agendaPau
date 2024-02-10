@@ -10,12 +10,12 @@ import java.util.Map;
 
 @Repository
 public class ArteMarcialRepositoryImpl implements ArteMarcialRepository{
-    private  final Map<Long,ArteMarcial> artesMarciales = new HashMap<>();
+
     private Long idSecuencia = 1L;
 
 
     public ArteMarcialRepositoryImpl(){
-        ArteMarcial arteInicial = new ArteMarcial("Kickboxing", "kicklight");
+        ArteMarcial arteInicial = new ArteMarcial("Kickboxing", "japon", "dificil");
         arteInicial.setId(idSecuencia++);
         artesMarciales.put(arteInicial.getId(), arteInicial);
         System.out.println(artesMarciales.get(1L));

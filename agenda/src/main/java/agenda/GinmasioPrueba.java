@@ -1,7 +1,8 @@
 package agenda;
 
 import agenda.entidades.ArteMarcial;
-import agenda.entidades.Contacto;
+import agenda.entidades.Rol;
+import agenda.entidades.Usuario;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -9,10 +10,13 @@ public class GinmasioPrueba {
     private static final String BASE_URL = "http://localhost:8080/artesmarciales";
 
     public static void main(String[] args) {
-        // Crea un nuevo contacto para agregar
-        ArteMarcial nuevaArte = new ArteMarcial("Muay Thai", "LightContact");
 
-        // Ejecuta el cliente de prueba
+        ArteMarcial nuevaArte = new ArteMarcial("Muay Thai", "aqui","muchisima");
+
+        Usuario pau = new Usuario("pau", "1234", Rol.ENTRENADOR);
+        Usuario hector = new Usuario("hector", "1234", Rol.USER);
+        Usuario admin = new Usuario("admin", "1234", Rol.ADMIN);
+
         GinmasioPrueba cliente = new GinmasioPrueba();
         cliente.realizarPruebas(nuevaArte);
     }
@@ -24,24 +28,18 @@ public class GinmasioPrueba {
         nuevaArte = agregarArte(nuevaArte);
         System.out.println("Arte agregado: " + nuevaArte);
 
-        // Obtiene todos los contactos
-        listarArteMarcial();
 
         // Obtiene un contacto por ID
         obtenerArteMarcialPorId(nuevaArte.getId());
 
-        // Obtiene todos los contactos después de la actualización
-        listarArteMarcial();
 
         // Obtiene un contacto por ID
-        ArteMarcial a = new ArteMarcial("Muay Thai", "LightContact");
-        modificarArteMarcial(1L,a);
+        ArteMarcial a = new ArteMarcial("Muay Thai", "LightContact","sergwer");
+        modificarArteMarcial(2L,a);
 
-        // Obtiene todos los contactos después de la actualización
-        listarArteMarcial();
 
         // Elimina un contacto por ID
-        eliminarArteMarcial(a.getId());
+        eliminarArteMarcial(2L);
 
         // Obtiene todos los contactos después de la eliminación
         listarArteMarcial();

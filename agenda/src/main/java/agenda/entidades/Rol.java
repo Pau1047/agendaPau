@@ -1,7 +1,8 @@
 package agenda.entidades;
 public enum Rol {
     ADMIN("ADMIN"),
-    USER("USER");
+    USER("USER"),
+    ENTRENADOR("COACH");
 
 
     private final String rol;

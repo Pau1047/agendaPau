@@ -3,11 +3,13 @@ package agenda.entidades;
 public class ArteMarcial {
     private Long id;
     private String nombre;
-    private String modalidad;
+    private String paisOriginario;
+    private String dificultad;
 
-    public ArteMarcial(String nombre,String modalidad){
+    public ArteMarcial(String nombre,String paisOriginario,String dificultad){
         this.nombre=nombre;
-        this.modalidad=modalidad;
+        this.paisOriginario=paisOriginario;
+        this.dificultad=dificultad;
     }
 
     public Long getId() {
@@ -26,16 +28,24 @@ public class ArteMarcial {
         this.nombre = nombre;
     }
 
-    public String getModalidad() {
-        return modalidad;
+    public String getPaisOriginario() {
+        return paisOriginario;
     }
 
-    public void setModalidad(String modalidad) {
-        this.modalidad = modalidad;
+    public void setPaisOriginario(String paisOriginario) {
+        this.paisOriginario = paisOriginario;
+    }
+
+    public String getDificultad() {
+        return dificultad;
+    }
+
+    public void setDificultad(String dificultad) {
+        this.dificultad = dificultad;
     }
 
     @Override
     public String toString() {
-        return "Arte marcial:" + " id = " + id + ", nombre = " + nombre  + ", modalidad = " + modalidad;
+        return "Arte marcial:" + " id = " + id + ", nombre = " + nombre  + ", pais originarrio = " + paisOriginario + ", dificultad = " + dificultad;
     }
 }
