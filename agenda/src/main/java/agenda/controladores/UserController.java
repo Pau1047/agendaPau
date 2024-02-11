@@ -7,13 +7,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
-@RequestMapping("/entrenador/entrenamiento")
-public class EntrenamientoController {
+@RequestMapping("/user/entrenamiento")
+public class UserController {
     private final EntrenamientoService entrenamientoService;
 
     @Autowired
-    public EntrenamientoController(EntrenamientoService entrenamientoService) {
+    public UserController(EntrenamientoService entrenamientoService) {
         this.entrenamientoService = entrenamientoService;
     }
 
@@ -22,10 +23,6 @@ public class EntrenamientoController {
         return entrenamientoService.obtenerTodos();
     }
 
-    @PostMapping
-    public Entrenamiento save(@RequestBody Entrenamiento entrenamiento){
-        return entrenamientoService.save(entrenamiento);
-    }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){

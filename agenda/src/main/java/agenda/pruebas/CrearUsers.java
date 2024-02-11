@@ -13,6 +13,8 @@ public class CrearUsers {
 
     public static void main(String[] args) {
         CrearUsers.crearUser(new Usuario("Pau", "prueba", Rol.ADMIN.getRol()));
+        CrearUsers.crearUser(new Usuario("Andrei", "1234", Rol.ENTRENADOR.getRol()));
+        CrearUsers.crearUser(new Usuario("Hector", "hector", Rol.USER.getRol()));
         CrearUsers.mirarTodosLosUsers();
     }
     private static void crearUser(Usuario newUser) {
