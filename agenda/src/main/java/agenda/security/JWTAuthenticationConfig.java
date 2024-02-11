@@ -1,6 +1,5 @@
 package agenda.security;
 
-import agenda.entidades.Rol;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.context.annotation.Configuration;
@@ -16,9 +15,9 @@ import static agenda.security.Constans.*;
 @Configuration
 public class JWTAuthenticationConfig {
 
-    public String getJWTToken(String username, Rol rol) {
+    public String getJWTToken(String username, String rol) {
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-                .commaSeparatedStringToAuthorityList("ROLE_" + rol.toString());
+                .commaSeparatedStringToAuthorityList("ROLE_" + rol);
 
 
         String token = Jwts

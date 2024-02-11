@@ -18,18 +18,18 @@ public class EntrenamientoRepositoryImpl implements EntrenamientoRepository {
     }
     @Override
     public List<Entrenamiento> obtenerTodos() {
-        String sql ="SELECT duracion, tipoArte FROM entrenamiento";
+        String sql ="SELECT duracion, tipo_arte FROM entrenamiento";
         return jdbcTemplate.query(sql,(rs, rowNum) ->
                 new Entrenamiento(
                     rs.getString("duracion"),
-                    rs.getString("tipoArte")
+                    rs.getString("tipo_arte")
                 )
         );
     }
 
     @Override
     public Entrenamiento save(Entrenamiento entrenamiento) {
-        String sql = "INSERT INTO entrenamiento (duracion, tipoArte) VALUES (?,?,?)";
+        String sql = "INSERT INTO entrenamiento (duracion, tipo_arte) VALUES (?,?)";
         jdbcTemplate.update(sql, entrenamiento.getDuracion(),entrenamiento.getTipoArte());
         System.out.println("Entrenamiento creado");
         return entrenamiento;
@@ -44,8 +44,8 @@ public class EntrenamientoRepositoryImpl implements EntrenamientoRepository {
 
     @Override
     public Entrenamiento modificarEntrenamiento(Long id, Entrenamiento entrenamiento) {
-        String sql = "UPDATE entrenamiento SET duracion = ?, tipoArte = ? WHERE id = ?";
-        jdbcTemplate.update(sql, entrenamiento.getDuracion(), entrenamiento.getTipoArte());
+        String sql = "UPDATE entrenamiento SET duracion = ?, tipo_arte = ? WHERE id = ?";
+        jdbcTemplate.update(sql, entrenamiento.getDuracion(), entrenamiento.getTipoArte(), id);
         return entrenamiento;
     }
 }

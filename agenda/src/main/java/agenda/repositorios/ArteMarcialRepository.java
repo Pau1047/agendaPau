@@ -10,5 +10,6 @@ public interface ArteMarcialRepository {
     ArteMarcial save(ArteMarcial arteMarcial);
     void delete(Long id);
 
+
     ArteMarcial modificarArteMarcial(Long id, ArteMarcial arteMarcial);
 }

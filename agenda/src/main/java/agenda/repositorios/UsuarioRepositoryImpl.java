@@ -17,17 +17,17 @@ public class UsuarioRepositoryImpl implements  UsuarioRepository{
 
     @Override
     public void save(Usuario usuario) {
-        String sql = "INSERT INTO Usuario (username, password, rol) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Usuario (username, encryptedPass, rol) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, usuario.getUsername(), PasswordEncryptor.encrypt(usuario.getEncryptedPass()), usuario.getRol());
     }
 
     @Override
     public List<Usuario> getUsuarios() {
-        String sql = "SELECT username, password, rol FROM Usuario";
+        String sql = "SELECT username, encryptedPass, rol FROM Usuario";
         return jdbcTemplate.query(sql, (rs, rowNum) ->
                 new Usuario(
                         rs.getString("username"),
-                        PasswordEncryptor.decrypt(rs.getString("password")),
+                        rs.getString("encryptedPass"),
                         rs.getString("rol")
                 )
         );

@@ -33,4 +33,9 @@ public class Entrenamiento {
         this.duracion = duracion;
         this.tipoArte = tipoArte;
     }
+
+    @Override
+    public String toString() {
+        return "Entrene : duración = " + duracion  + ", tipo de arte = " + tipoArte;
+    }
 }

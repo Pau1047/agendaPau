@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/arte_marcial")
+@RequestMapping("/admin/arte_marcial")
 public class ArteMarcialController {
     private final ArteMarcialService arteMarcialService;
 

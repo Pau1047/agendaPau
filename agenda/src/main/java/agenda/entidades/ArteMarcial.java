@@ -46,6 +46,6 @@ public class ArteMarcial {
 
     @Override
     public String toString() {
-        return "Arte marcial:" + " id = " + id + ", nombre = " + nombre  + ", pais originarrio = " + paisOriginario + ", dificultad = " + dificultad;
+        return "Arte marcial:" + ", nombre = " + nombre  + ", pais originario = " + paisOriginario + ", dificultad = " + dificultad;
     }
 }

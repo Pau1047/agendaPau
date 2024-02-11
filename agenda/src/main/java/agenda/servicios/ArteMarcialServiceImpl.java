@@ -1,35 +1,39 @@
 package agenda.servicios;
 
 import agenda.entidades.ArteMarcial;
+import agenda.repositorios.ArteMarcialRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class ArteMarcialServiceImpl implements ArteMarcialService {
-    private final ArteMarcialServiceImpl arteMarcialService;
+    @Autowired
+    private final ArteMarcialRepository arteMarcialRepository;
 
-    public ArteMarcialServiceImpl(ArteMarcialServiceImpl arteMarcialService) {
-        this.arteMarcialService = arteMarcialService;
+    public ArteMarcialServiceImpl(ArteMarcialRepository arteMarcialRepository) {
+        this.arteMarcialRepository = arteMarcialRepository;
     }
+
 
     @Override
     public List<ArteMarcial> obtenerTodos() {
-        return arteMarcialService.obtenerTodos();
+        return arteMarcialRepository.obtenerTodos();
     }
 
     @Override
     public ArteMarcial save(ArteMarcial arteMarcial) {
-        return arteMarcialService.save(arteMarcial);
+        return arteMarcialRepository.save(arteMarcial);
     }
 
     @Override
     public void delete(Long id) {
-        arteMarcialService.delete(id);
+        arteMarcialRepository.delete(id);
     }
 
     @Override
     public ArteMarcial modificarArteMarcial(Long id, ArteMarcial arteMarcial) {
-        return arteMarcialService.modificarArteMarcial(id,arteMarcial);
+        return arteMarcialRepository.modificarArteMarcial(id,arteMarcial);
     }
 }

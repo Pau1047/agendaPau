@@ -2,7 +2,7 @@ package agenda.entidades;
 public class Usuario {
     String username;
     String encryptedPass;
-    Rol rol;
+    String rol;
 
 
     public Usuario(String username, String encryptedPass, String rol) {
@@ -32,15 +32,13 @@ public class Usuario {
     }
 
 
-    public Rol getRol() {
+    public String getRol() {
         return rol;
     }
 
-
-    public void setRol(Rol rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
-
 
     @Override
     public String toString() {

@@ -1,7 +1,6 @@
-package agenda;
+package agenda.pruebas;
 
 import agenda.entidades.ArteMarcial;
-import agenda.entidades.Rol;
 import agenda.entidades.Usuario;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
@@ -11,12 +10,7 @@ public class GinmasioPrueba {
 
     public static void main(String[] args) {
 
-        ArteMarcial nuevaArte = new ArteMarcial("Muay Thai", "aqui","muchisima");
-
-        Usuario pau = new Usuario("pau", "1234", Rol.ENTRENADOR);
-        Usuario hector = new Usuario("hector", "1234", Rol.USER);
-        Usuario admin = new Usuario("admin", "1234", Rol.ADMIN);
-
+        ArteMarcial nuevaArte = new ArteMarcial("rubwen", "casaruben","easy");
         GinmasioPrueba cliente = new GinmasioPrueba();
         cliente.realizarPruebas(nuevaArte);
     }
@@ -24,20 +18,14 @@ public class GinmasioPrueba {
     public void realizarPruebas(ArteMarcial nuevaArte) {
         listarArteMarcial();
 
-        // Agrega un nuevo contacto
         nuevaArte = agregarArte(nuevaArte);
         System.out.println("Arte agregado: " + nuevaArte);
 
 
-        // Obtiene un contacto por ID
-        obtenerArteMarcialPorId(nuevaArte.getId());
 
-
-        // Obtiene un contacto por ID
         ArteMarcial a = new ArteMarcial("Muay Thai", "LightContact","sergwer");
         modificarArteMarcial(2L,a);
 
-        // Obtiene todos los contactos después de la eliminación
         listarArteMarcial();
     }
 

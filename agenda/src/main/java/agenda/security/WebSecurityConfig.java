@@ -27,11 +27,18 @@ class WebSecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests( authz -> authz
+
+                        .requestMatchers("/admin/**").hasAuthority("ROLE_" + Rol.ADMIN)
+                        .requestMatchers("/entrenador/**").hasAuthority("ROLE_" + Rol.ENTRENADOR)
+                        .requestMatchers("/user/**").hasAuthority("ROLE_" + Rol.USER)
+                        /*
                         .requestMatchers("/admin/**").hasAuthority("ROLE_" + Rol.ADMIN)
                         .requestMatchers("/entrenador/**").hasAuthority("ROLE_" + Rol.ENTRENADOR)
                         .requestMatchers(HttpMethod.DELETE, "/user/**").hasAuthority("ROLE_" + Rol.USER)
                         .requestMatchers(HttpMethod.GET, "/user/**").hasAuthority("ROLE_" + Rol.USER)
                         .requestMatchers(HttpMethod.PUT, "/user/**").hasAuthority("ROLE_" + Rol.USER)
+
+                         */
                         .anyRequest().permitAll())
                 .addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
 

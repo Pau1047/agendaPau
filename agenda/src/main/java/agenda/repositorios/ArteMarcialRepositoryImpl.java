@@ -16,11 +16,11 @@ public class ArteMarcialRepositoryImpl implements ArteMarcialRepository{
 
     @Override
     public List<ArteMarcial> obtenerTodos() {
-        String sql = "SELECT nombre, paisOriginario, dificultad FROM arte_marcial";
+        String sql = "SELECT nombre, pais_originario, dificultad FROM arte_marcial";
         return jdbcTemplate.query(sql,(rs, rowNum) ->
                 new ArteMarcial(
                         rs.getString("nombre"),
-                        rs.getString("paisOriginario"),
+                        rs.getString("pais_originario"),
                         rs.getString("dificultad")
                 )
         );
@@ -28,7 +28,7 @@ public class ArteMarcialRepositoryImpl implements ArteMarcialRepository{
 
     @Override
     public ArteMarcial save(ArteMarcial arteMarcial) {
-            String sql = "INSERT INTO arte_marcial (nombre, paisOriginario, dificultad) VALUES (?,?,?)";
+            String sql = "INSERT INTO arte_marcial (nombre, pais_originario, dificultad) VALUES (?,?,?)";
             jdbcTemplate.update(sql, arteMarcial.getNombre(), arteMarcial.getPaisOriginario(), arteMarcial.getDificultad());
             System.out.println("Arte Marcial creada");
         return arteMarcial;
@@ -43,8 +43,8 @@ public class ArteMarcialRepositoryImpl implements ArteMarcialRepository{
 
     @Override
     public ArteMarcial modificarArteMarcial(Long id, ArteMarcial arteMarcial) {
-            String sql = "UPDATE arte_marcial SET nombre = ?, paisOriginario = ?, dificultad = ? WHERE id = ?";
-            jdbcTemplate.update(sql, arteMarcial.getNombre(), arteMarcial.getPaisOriginario(), arteMarcial.getDificultad());
+            String sql = "UPDATE arte_marcial SET nombre = ?, pais_originario = ?, dificultad = ? WHERE id = ?";
+            jdbcTemplate.update(sql, arteMarcial.getNombre(), arteMarcial.getPaisOriginario(), arteMarcial.getDificultad(), id);
             System.out.println("Cambiando el arte marcial con el id = " + id);
             return arteMarcial;
     }

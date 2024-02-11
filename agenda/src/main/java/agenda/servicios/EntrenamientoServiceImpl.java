@@ -1,36 +1,40 @@
 package agenda.servicios;
 
 import agenda.entidades.Entrenamiento;
-import org.springframework.stereotype.Repository;
+import agenda.repositorios.EntrenamientoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Repository
+@Service
 
 public class EntrenamientoServiceImpl implements EntrenamientoService {
-    private final EntrenamientoServiceImpl entrenamientoService;
+    @Autowired
+    private final EntrenamientoRepository entrenamientoRepository;
 
-    public EntrenamientoServiceImpl(EntrenamientoServiceImpl entrenamientoService) {
-        this.entrenamientoService = entrenamientoService;
+    public EntrenamientoServiceImpl(EntrenamientoRepository entrenamientoRepository) {
+        this.entrenamientoRepository = entrenamientoRepository;
     }
+
 
     @Override
     public List<Entrenamiento> obtenerTodos() {
-        return entrenamientoService.obtenerTodos();
+        return entrenamientoRepository.obtenerTodos();
     }
 
     @Override
     public Entrenamiento save(Entrenamiento entrenamiento) {
-        return entrenamientoService.save(entrenamiento);
+        return entrenamientoRepository.save(entrenamiento);
     }
 
     @Override
     public void delete(Long id) {
-        entrenamientoService.delete(id);
+        entrenamientoRepository.delete(id);
     }
 
     @Override
     public Entrenamiento modificarEntrenamiento(Long id, Entrenamiento entrenamiento) {
-        return entrenamientoService.modificarEntrenamiento(id,entrenamiento);
+        return entrenamientoRepository.modificarEntrenamiento(id,entrenamiento);
     }
 }
